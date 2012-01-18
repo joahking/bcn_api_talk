@@ -9,33 +9,33 @@
 ## About me :-)
 
 * working with Rails since 2006
-* tests addict since 2007 (do you remember 2007 tests' peepcodes?)
+* tests addict since 2007 (do you remember peepcodes on tests back in 2007?)
 * since 2010 working for [3scale](http://www.3scale.net) an SaaS startup "API Management Platform"
-* I love paragliding http://para.pent.es
-
-!SLIDE
-
-## main points of this talk
-
-it all depends, see your choices, choose wisely
+* I love paragliding
 
 !SLIDE
 
 ## APIs from inside and outside
 
-outside
+!SLIDE
+
+## outside
+
 * who's using your api?
 * design
 * change responsability
 
-inside
+!SLIDE
+
+## inside
+
 * code Maintainability/Organization/Beauty
 * team developing speed
 * cheap
 
 !SLIDE
 
-## main points on APIs
+## main concerns
 
 * APIs are hard to change, design them carefully
 * speed is a major concern
@@ -74,8 +74,9 @@ if your API is for clients consumption:
 ## so... API design
 
 outside
+
 * URLs, they are the API, REST
-* resources design: xml, json (should be the same throughtout the API)
+* resources design: xml, json (should be the same throughout the API)
 * versions, they aid you at changing
 * pagination (speed)
 * light responses (speed)
@@ -88,6 +89,8 @@ they are important in web app, but in APIs lots more
 
 * main way of referring to your end, RESTful
 
+!SLIDE
+
 * subdomain. e.g. http://api.pent.es/flying_sites.json
 * namespaces. e.g. http://para.pent.es/api/flying_sites.json
 
@@ -97,13 +100,17 @@ they are important in web app, but in APIs lots more
 
 ## resources
 
-should be the same throughtout the API
+should be the same throughout the API
+
+!SLIDE
 
 * do not expose your objects directly
 
-you can be exposing your db
+why expose your db?
 
-(and making your clients cry seeing your object model)
+!SLIDE
+
+(and make your clients cry seeing your object model)
 
 !SLIDE
 
@@ -111,32 +118,25 @@ you can be exposing your db
 
 * nest object inside objects?
 
+!SLIDE
+
 (bad for speed and design)
 
 bad:
 
-<user>
-  <plans>
-    <plan>
-      <name>...</name>
-    </plan>
-  </plans>
-</user>
+:user => { :plans => { :plan => { :name => "bad" }}}
+
+!SLIDE
 
 good:
 
-<user>
-  <plan_ids>1,6</plan_ids>
-</user>
+:user => { :plans => [1,6] }
+
+!SLIDE
 
 sexy (but keep an eye on speed):
 
-<user>
-  <plans>
-    <plan>api.pent.es/plans/1</plan>
-    <plan>api.pent.es/plans/6</plan>
-  </plans>
-</user>
+:user => { :plans => ["api.pent.es/plans/1", "api.pent.es/plans/6"]}
 
 !SLIDE
 
@@ -144,19 +144,28 @@ sexy (but keep an eye on speed):
 
 lots of controversy around. Main ways are:
 
-* as a param, http://para.pent.es/flying_sites.json?version=1
+!SLIDE
 
-* in the path, (twitter does it!)
-e.g. 
-(version 1) http://para.pent.es/1/flying_sites.json
+* as a param
 
-but "cool urls don't change"
+http://para.pent.es/flying_sites.json?version=1
+
+!SLIDE
+
+* in the path (version 1)
+http://para.pent.es/1/flying_sites.json
+
+twitter does it!, but "cool urls don't change"
+
+!SLIDE
 
 * in the headers
 Accept: your/media-type; version=X
 Content-Type: your/media-type; version=X
 
 allows the client to say which range of versions it can handle, and the server to decide which one to respond with
+
+!SLIDE
 
 wanz moar? e.g. http://freelancing-gods.com/posts/versioning\_your\_ap\_is
 
@@ -167,7 +176,7 @@ wanz moar? e.g. http://freelancing-gods.com/posts/versioning\_your\_ap\_is
 they do not solve everything, because:
 
 * you need to have your clients to change their end
-* maintenance cost of different versions
+* maintenance cost of different versions (but there are some good solutions around)
 
 !SLIDE
 
@@ -175,15 +184,18 @@ they do not solve everything, because:
 
 speed is your main concern here
 
-main ways are:
+!SLIDE
+
 * as attr in collection root element
 
 <users page=".." per_page => ".." pages => "..">
 
 
+!SLIDE
+
 * as elements itself
 
-{ :page => .., :per_page => .., :pages => .. }
+:users => { :page => .., :per_page => .., :pages => .., :username => ..}
 
 !SLIDE
 
@@ -232,19 +244,23 @@ speed, less memory footprint
 
 http://para.pent.es/api/flying_sites.json?key=SHA1
 
+!SLIDE
+
 avoid overriding login_required
 
   before_filter :api_login_required
 
 !SLIDE
 
-## 3 Decision Point: to_xml vs builders in views
+## 3 Decision Point: to_xml vs builder views
 
 to_xml
 * way faster (no view handling involved)
 * simplicity
 
 (at 3scale we are implementing a lego-like api cache on redis, should be trailing fast)
+
+!SLIDE
 
 builders
 * lots of people prefers them
@@ -261,15 +277,17 @@ class Api::UsersController < Api::BaseController
       format.xml
     end
   end
-
 end
 
 !SLIDE
 
 ## coding insides
 
-* rails builder is a pain, beware of using instruct on him
-* nokogiri fast but no skip_instruct
+* rails XmlBuilder is a pain, beware of using instruct on him
+
+!SLIDE
+
+* nokogiri builder fast but no skip_instruct (easy to patch)
 
 !SLIDE
 
@@ -294,6 +312,8 @@ will 3scale be providing here?
 !SLIDE
 
 # gracias
+
+!SLIDE
 
 # Questions?
 
