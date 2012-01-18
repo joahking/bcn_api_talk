@@ -77,6 +77,9 @@ outside
 
 * URLs, they are the API, REST
 * resources design: xml, json (should be the same throughout the API)
+  
+!SLIDE
+
 * versions, they aid you at changing
 * pagination (speed)
 * light responses (speed)
@@ -120,9 +123,7 @@ why expose your db?
 
 !SLIDE
 
-(bad for speed and design)
-
-bad:
+bad for speed and design:
 
 :user => { :plans => { :plan => { :name => "bad" }}}
 
@@ -134,9 +135,11 @@ good:
 
 !SLIDE
 
-sexy (but keep an eye on speed):
+sexy:
 
-:user => { :plans => ["api.pent.es/plans/1", "api.pent.es/plans/6"]}
+:user => { :plans => ["api.pent.es/plans/1.json", "api.pent.es/plans/6.json"]}
+
+(but keep an eye on speed)
 
 !SLIDE
 
@@ -153,15 +156,21 @@ http://para.pent.es/flying_sites.json?version=1
 !SLIDE
 
 * in the path (version 1)
+
+
 http://para.pent.es/1/flying_sites.json
+
 
 twitter does it!, but "cool urls don't change"
 
 !SLIDE
 
 * in the headers
+
 Accept: your/media-type; version=X
+
 Content-Type: your/media-type; version=X
+
 
 allows the client to say which range of versions it can handle, and the server to decide which one to respond with
 
@@ -188,7 +197,7 @@ speed is your main concern here
 
 * as attr in collection root element
 
-<users page=".." per_page => ".." pages => "..">
+  <users page="1" per_page => "20" pages => "20">
 
 
 !SLIDE
@@ -206,16 +215,21 @@ let's see some Rails
 !SLIDE code
 
 # first decision point
+
 class UsersController < ApplicationController
+
   # second decision point
-  before_filter :login_required
+
+  before\_filter :login\_required
 
   def index
     respond_to do |format|
       format.html
       format.xml # third decision point
     end
+
   end
+
 end
 
 !SLIDE

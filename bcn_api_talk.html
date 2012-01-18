@@ -4953,6 +4953,13 @@ jQuery.extend( jQuery.easing,
               <h2>so... API design</h2><p>outside</p><ul>
 <li>URLs, they are the API, REST</li>
 <li>resources design: xml, json (should be the same throughout the API)</li>
+</ul>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-10" class="content">
+              <ul>
 <li>versions, they aid you at changing</li>
 <li>pagination (speed)</li>
 <li>light responses (speed)</li>
@@ -4961,7 +4968,7 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-10" class="content">
+            <div id="slide-11" class="content">
               <h2>urls</h2><p>they are important in web app, but in APIs lots more</p><ul>
 <li>main way of referring to your end, RESTful</li>
 </ul>
@@ -4969,7 +4976,7 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-11" class="content">
+            <div id="slide-12" class="content">
               <ul>
 <li>subdomain. e.g. http://api.pent.es/flying_sites.json</li>
 <li><p>namespaces. e.g. http://para.pent.es/api/flying_sites.json</p></li>
@@ -4979,13 +4986,13 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-12" class="content">
+            <div id="slide-13" class="content">
               <h2>resources</h2><p>should be the same throughout the API</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-13" class="content">
+            <div id="slide-14" class="content">
               <ul>
 <li>do not expose your objects directly</li>
 </ul>
@@ -4994,13 +5001,13 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-14" class="content">
+            <div id="slide-15" class="content">
               <p>(and make your clients cry seeing your object model)</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-15" class="content">
+            <div id="slide-16" class="content">
               <h2>resources</h2><ul>
 <li>nest object inside objects?</li>
 </ul>
@@ -5008,31 +5015,31 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-16" class="content">
-              <p>(bad for speed and design)</p><p>bad:</p><p>:user =&gt; { :plans =&gt; { :plan =&gt; { :name =&gt; "bad" }}}</p>
-            </div>
-          </div>
-        
-          <div class="">
             <div id="slide-17" class="content">
-              <p>good:</p><p>:user =&gt; { :plans =&gt; [1,6] }</p>
+              <p>bad for speed and design:</p><p>:user =&gt; { :plans =&gt; { :plan =&gt; { :name =&gt; "bad" }}}</p>
             </div>
           </div>
         
           <div class="">
             <div id="slide-18" class="content">
-              <p>sexy (but keep an eye on speed):</p><p>:user =&gt; { :plans =&gt; ["api.pent.es/plans/1", "api.pent.es/plans/6"]}</p>
+              <p>good:</p><p>:user =&gt; { :plans =&gt; [1,6] }</p>
             </div>
           </div>
         
           <div class="">
             <div id="slide-19" class="content">
-              <h2>versioning</h2><p>lots of controversy around. Main ways are:</p>
+              <p>sexy:</p><p>:user =&gt; { :plans =&gt; ["api.pent.es/plans/1.json", "api.pent.es/plans/6.json"]}</p><p>(but keep an eye on speed)</p>
             </div>
           </div>
         
           <div class="">
             <div id="slide-20" class="content">
+              <h2>versioning</h2><p>lots of controversy around. Main ways are:</p>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-21" class="content">
               <ul>
 <li>as a param</li>
 </ul>
@@ -5041,34 +5048,31 @@ jQuery.extend( jQuery.easing,
           </div>
         
           <div class="">
-            <div id="slide-21" class="content">
-              <ul>
-<li>in the path (version 1)
-http://para.pent.es/1/flying_sites.json</li>
-</ul>
-<p>twitter does it!, but "cool urls don't change"</p>
-            </div>
-          </div>
-        
-          <div class="">
             <div id="slide-22" class="content">
               <ul>
-<li>in the headers
-Accept: your/media-type; version=X
-Content-Type: your/media-type; version=X</li>
+<li>in the path (version 1)</li>
 </ul>
-<p>allows the client to say which range of versions it can handle, and the server to decide which one to respond with</p>
+<p>http://para.pent.es/1/flying_sites.json</p><p>twitter does it!, but "cool urls don't change"</p>
             </div>
           </div>
         
           <div class="">
             <div id="slide-23" class="content">
-              <p>wanz moar? e.g. http://freelancing-gods.com/posts/versioning_your_ap_is</p>
+              <ul>
+<li>in the headers</li>
+</ul>
+<p>Accept: your/media-type; version=X</p><p>Content-Type: your/media-type; version=X</p><p>allows the client to say which range of versions it can handle, and the server to decide which one to respond with</p>
             </div>
           </div>
         
           <div class="">
             <div id="slide-24" class="content">
+              <p>wanz moar? e.g. http://freelancing-gods.com/posts/versioning_your_ap_is</p>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-25" class="content">
               <h2>versions? yes, but...</h2><p>they do not solve everything, because:</p><ul>
 <li>you need to have your clients to change their end</li>
 <li>maintenance cost of different versions (but there are some good solutions around)</li>
@@ -5077,22 +5081,25 @@ Content-Type: your/media-type; version=X</li>
           </div>
         
           <div class="">
-            <div id="slide-25" class="content">
+            <div id="slide-26" class="content">
               <h2>pagination</h2><p>speed is your main concern here</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-26" class="content">
+            <div id="slide-27" class="content">
               <ul>
-<li>as attr in collection root element</li>
+<li>
+<p>as attr in collection root element</p>
+
+<p><users page="1" per_page=""> "20" pages =&gt; "20"&gt;</users></p>
+</li>
 </ul>
-<p><users page=".." per_page=""> ".." pages =&gt; ".."&gt;</users></p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-27" class="content">
+            <div id="slide-28" class="content">
               <ul>
 <li>as elements itself</li>
 </ul>
@@ -5101,26 +5108,23 @@ Content-Type: your/media-type; version=X</li>
           </div>
         
           <div class="">
-            <div id="slide-28" class="content">
+            <div id="slide-29" class="content">
               <h2>Coding decision points</h2><p>let's see some Rails</p>
             </div>
           </div>
         
           <div class=" code">
-            <div id="slide-29" class="content">
-              <h1>first decision point</h1><p>class UsersController &lt; ApplicationController
-  # second decision point
-  before<em>filter :login</em>required</p><p>  def index</p><pre><code>respond_to do |format|
+            <div id="slide-30" class="content">
+              <h1>first decision point</h1><p>class UsersController &lt; ApplicationController</p><p>  # second decision point</p><p>  before_filter :login_required</p><p>  def index</p><pre><code>respond_to do |format|
   format.html
   format.xml # third decision point
 end
-</code></pre><p>  end
-end</p>
+</code></pre><p>  end</p><p>end</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-30" class="content">
+            <div id="slide-31" class="content">
               <h2>1 Decision Point: prefer separated controllers</h2><p>class Api::UsersController &lt; Api::BaseController</p><ul>
 <li>you save loading lots of support the full app needs</li>
 <li>speed</li>
@@ -5130,7 +5134,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-31" class="content">
+            <div id="slide-32" class="content">
               <h2>or a leaner stack</h2><ul>
 <li>sinatra + sequel</li>
 <li>padrino</li>
@@ -5141,19 +5145,19 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-32" class="content">
+            <div id="slide-33" class="content">
               <h2>2 Decision Point: api login</h2><p>http://para.pent.es/api/flying_sites.json?key=SHA1</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-33" class="content">
+            <div id="slide-34" class="content">
               <p>avoid overriding login_required</p><p>  before<em>filter :api</em>login_required</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-34" class="content">
+            <div id="slide-35" class="content">
               <h2>3 Decision Point: to_xml vs builder views</h2><p>to_xml
 * way faster (no view handling involved)
 * simplicity</p><p>(at 3scale we are implementing a lego-like api cache on redis, should be trailing fast)</p>
@@ -5163,7 +5167,7 @@ end</p>
           <div class="
  
  builders">
-            <div id="slide-35" class="content">
+            <div id="slide-36" class="content">
               <ul>
 <li>lots of people prefers them</li>
 <li>cache may be easier to set in Rails</li>
@@ -5172,7 +5176,7 @@ end</p>
           </div>
         
           <div class=" code">
-            <div id="slide-36" class="content">
+            <div id="slide-37" class="content">
               <p>class Api::UsersController &lt; Api::BaseController
   before<em>filter :api</em>login_required</p><p>  def index</p><pre><code>respond_to do |format|
   format.js
@@ -5184,7 +5188,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-37" class="content">
+            <div id="slide-38" class="content">
               <h2>coding insides</h2><ul>
 <li>rails XmlBuilder is a pain, beware of using instruct on him</li>
 </ul>
@@ -5192,7 +5196,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-38" class="content">
+            <div id="slide-39" class="content">
               <ul>
 <li>nokogiri builder fast but no skip_instruct (easy to patch)</li>
 </ul>
@@ -5200,7 +5204,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-39" class="content">
+            <div id="slide-40" class="content">
               <h2>test the API</h2><ul>
 <li>lint tests every request</li>
 </ul>
@@ -5208,7 +5212,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-40" class="content">
+            <div id="slide-41" class="content">
               <h2>profile your API</h2><ul>
 <li>ab</li>
 </ul>
@@ -5216,7 +5220,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-41" class="content">
+            <div id="slide-42" class="content">
               <h2>documentation to play with</h2><ul>
 <li>swagger http://swagger.wordnik.com/</li>
 </ul>
@@ -5225,13 +5229,13 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-42" class="content">
+            <div id="slide-43" class="content">
               <h1>gracias</h1>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-43" class="content">
+            <div id="slide-44" class="content">
               <h1>Questions?</h1><p>(btw: Stop SOPA!, Stop PIPA!)</p>
             </div>
           </div>
