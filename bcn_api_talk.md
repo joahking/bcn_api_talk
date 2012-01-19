@@ -6,9 +6,11 @@
 
 !SLIDE
 
-## About me :-)
+## About me (before you run away)
 
-* working with Rails since 2006
+Joaquin Rivera Padron (a.k.a joahking)
+
+* working: Rails since 2006
 * tests addict since 2007 (do you remember peepcodes on tests back in 2007?)
 * since 2010 working for [3scale](http://www.3scale.net) an SaaS startup "API Management Platform"
 * I love paragliding
@@ -49,7 +51,7 @@
 if your API is for clients consumption:
 
 * very problematic
-* you are **out of control** of how your users parse your data 
+* you are **out of control** of how your users parse your data
 
 (they can even be using regexps!)
 
@@ -77,7 +79,7 @@ outside
 
 * URLs, they are the API, REST
 * resources design: xml, json (should be the same throughout the API)
-  
+
 !SLIDE
 
 * versions, they aid you at changing
@@ -197,8 +199,7 @@ speed is your main concern here
 
 * as attr in collection root element
 
-  <users page="1" per_page => "20" pages => "20">
-
+<users page="1" per_page="20" pages="20">
 
 !SLIDE
 
@@ -206,15 +207,11 @@ speed is your main concern here
 
 :users => { :page => .., :per_page => .., :pages => .., :username => ..}
 
-!SLIDE
+!SLIDE code
 
 ## Coding decision points
 
-let's see some Rails
-
-!SLIDE code
-
-# first decision point
+ # first decision point
 
 class UsersController < ApplicationController
 
@@ -262,28 +259,28 @@ http://para.pent.es/api/flying_sites.json?key=SHA1
 
 avoid overriding login_required
 
-  before_filter :api_login_required
+  before_filter :api\_login\_required
 
 !SLIDE
 
 ## 3 Decision Point: to_xml vs builder views
 
 to_xml
+
 * way faster (no view handling involved)
 * simplicity
 
-(at 3scale we are implementing a lego-like api cache on redis, should be trailing fast)
-
 !SLIDE
 
-builders
+## builder views
+
 * lots of people prefers them
 * cache may be easier to set in Rails
 
 !SLIDE code
 
 class Api::UsersController < Api::BaseController
-  before_filter :api_login_required
+  before\_filter :api\_login_required
 
   def index
     respond_to do |format|
@@ -307,7 +304,7 @@ end
 
 ## test the API
 
-* lint tests every request
+* (idea) lint tests every response
 
 !SLIDE
 
@@ -320,8 +317,6 @@ end
 ## documentation to play with
 
 * swagger http://swagger.wordnik.com/
-
-will 3scale be providing here?
 
 !SLIDE
 
