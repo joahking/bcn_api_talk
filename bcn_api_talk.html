@@ -4873,8 +4873,8 @@ jQuery.extend( jQuery.easing,
         
           <div class="">
             <div id="slide-1" class="content">
-              <h2>About me :-)</h2><ul>
-<li>working with Rails since 2006</li>
+              <h2>About me (before you run away)</h2><p>Joaquin Rivera Padron (a.k.a joahking)</p><ul>
+<li>working: Rails since 2006</li>
 <li>tests addict since 2007 (do you remember peepcodes on tests back in 2007?)</li>
 <li>since 2010 working for <a href="http://www.3scale.net">3scale</a> an SaaS startup "API Management Platform"</li>
 <li>I love paragliding</li>
@@ -5089,12 +5089,9 @@ jQuery.extend( jQuery.easing,
           <div class="">
             <div id="slide-27" class="content">
               <ul>
-<li>
-<p>as attr in collection root element</p>
-
-<p><users page="1" per_page=""> "20" pages =&gt; "20"&gt;</users></p>
-</li>
+<li>as attr in collection root element</li>
 </ul>
+<p><users page="1" per_page="20" pages="20"></users></p>
             </div>
           </div>
         
@@ -5107,15 +5104,9 @@ jQuery.extend( jQuery.easing,
             </div>
           </div>
         
-          <div class="">
-            <div id="slide-29" class="content">
-              <h2>Coding decision points</h2><p>let's see some Rails</p>
-            </div>
-          </div>
-        
           <div class=" code">
-            <div id="slide-30" class="content">
-              <h1>first decision point</h1><p>class UsersController &lt; ApplicationController</p><p>  # second decision point</p><p>  before_filter :login_required</p><p>  def index</p><pre><code>respond_to do |format|
+            <div id="slide-29" class="content">
+              <h2>Coding decision points</h2><p> # first decision point</p><p>class UsersController &lt; ApplicationController</p><p>  # second decision point</p><p>  before_filter :login_required</p><p>  def index</p><pre><code>respond_to do |format|
   format.html
   format.xml # third decision point
 end
@@ -5124,7 +5115,7 @@ end
           </div>
         
           <div class="">
-            <div id="slide-31" class="content">
+            <div id="slide-30" class="content">
               <h2>1 Decision Point: prefer separated controllers</h2><p>class Api::UsersController &lt; Api::BaseController</p><ul>
 <li>you save loading lots of support the full app needs</li>
 <li>speed</li>
@@ -5134,7 +5125,7 @@ end
           </div>
         
           <div class="">
-            <div id="slide-32" class="content">
+            <div id="slide-31" class="content">
               <h2>or a leaner stack</h2><ul>
 <li>sinatra + sequel</li>
 <li>padrino</li>
@@ -5145,30 +5136,29 @@ end
           </div>
         
           <div class="">
-            <div id="slide-33" class="content">
+            <div id="slide-32" class="content">
               <h2>2 Decision Point: api login</h2><p>http://para.pent.es/api/flying_sites.json?key=SHA1</p>
             </div>
           </div>
         
           <div class="">
+            <div id="slide-33" class="content">
+              <p>avoid overriding login_required</p><p>  before_filter :api_login_required</p>
+            </div>
+          </div>
+        
+          <div class="">
             <div id="slide-34" class="content">
-              <p>avoid overriding login_required</p><p>  before<em>filter :api</em>login_required</p>
+              <h2>3 Decision Point: to_xml vs builder views</h2><p>to_xml</p><ul>
+<li>way faster (no view handling involved)</li>
+<li>simplicity</li>
+</ul>
             </div>
           </div>
         
           <div class="">
             <div id="slide-35" class="content">
-              <h2>3 Decision Point: to_xml vs builder views</h2><p>to_xml
-* way faster (no view handling involved)
-* simplicity</p><p>(at 3scale we are implementing a lego-like api cache on redis, should be trailing fast)</p>
-            </div>
-          </div>
-        
-          <div class="
- 
- builders">
-            <div id="slide-36" class="content">
-              <ul>
+              <h2>builder views</h2><ul>
 <li>lots of people prefers them</li>
 <li>cache may be easier to set in Rails</li>
 </ul>
@@ -5176,9 +5166,9 @@ end
           </div>
         
           <div class=" code">
-            <div id="slide-37" class="content">
+            <div id="slide-36" class="content">
               <p>class Api::UsersController &lt; Api::BaseController
-  before<em>filter :api</em>login_required</p><p>  def index</p><pre><code>respond_to do |format|
+  before_filter :api_login_required</p><p>  def index</p><pre><code>respond_to do |format|
   format.js
   format.xml
 end
@@ -5188,7 +5178,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-38" class="content">
+            <div id="slide-37" class="content">
               <h2>coding insides</h2><ul>
 <li>rails XmlBuilder is a pain, beware of using instruct on him</li>
 </ul>
@@ -5196,7 +5186,7 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-39" class="content">
+            <div id="slide-38" class="content">
               <ul>
 <li>nokogiri builder fast but no skip_instruct (easy to patch)</li>
 </ul>
@@ -5204,15 +5194,15 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-40" class="content">
+            <div id="slide-39" class="content">
               <h2>test the API</h2><ul>
-<li>lint tests every request</li>
+<li>(idea) lint tests every response</li>
 </ul>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-41" class="content">
+            <div id="slide-40" class="content">
               <h2>profile your API</h2><ul>
 <li>ab</li>
 </ul>
@@ -5220,22 +5210,21 @@ end</p>
           </div>
         
           <div class="">
-            <div id="slide-42" class="content">
+            <div id="slide-41" class="content">
               <h2>documentation to play with</h2><ul>
 <li>swagger http://swagger.wordnik.com/</li>
 </ul>
-<p>will 3scale be providing here?</p>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-43" class="content">
+            <div id="slide-42" class="content">
               <h1>gracias</h1>
             </div>
           </div>
         
           <div class="">
-            <div id="slide-44" class="content">
+            <div id="slide-43" class="content">
               <h1>Questions?</h1><p>(btw: Stop SOPA!, Stop PIPA!)</p>
             </div>
           </div>
